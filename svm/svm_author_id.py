@@ -24,23 +24,24 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
-features_train = features_train[:len(features_train)/100]
-labels_train = labels_train[:len(labels_train)/100]
+#features_train = features_train[:len(features_train)/100]
+#labels_train = labels_train[:len(labels_train)/100]
 
 from sklearn.svm import SVC
 
-for c_val in [1, 10, 100, 1000, 10000]:
-    t0 = time()
-    cls = SVC(kernel='rbf', C=c_val )
-    cls.fit(features_train, labels_train)
-    print("training time:", round(time() - t0, 3), "s")
+#for c_val in [1, 10, 100, 1000, 10000]:
+c_val = 10000
+t0 = time()
+cls = SVC(kernel='rbf', C=c_val )
+cls.fit(features_train, labels_train)
+print("training time:", round(time() - t0, 3), "s")
 
-    t1 = time()
-    pred = cls.predict(features_test)
-    print('prediction time:', round(time() - t1, 3), "s")
+t1 = time()
+pred = cls.predict(features_test)
+print('prediction time:', round(time() - t1, 3), "s")
 
-    from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score
 
-    accuracy = accuracy_score(labels_test, pred)
-    print("c=", c_val, "accuracy=", accuracy)
+accuracy = accuracy_score(labels_test, pred)
+print("c=", c_val, "accuracy=", accuracy)
 #########################################################
