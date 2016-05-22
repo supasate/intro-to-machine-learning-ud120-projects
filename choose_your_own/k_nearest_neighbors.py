@@ -36,17 +36,40 @@ from sklearn.neighbors import KNeighborsClassifier
 from time import time
 
 print("K-Nearest Neighbors")
-t0 = time()
-clf = KNeighborsClassifier(n_neighbors = 2, algorithm = 'ball_tree')
-clf.fit(features_train, labels_train)
-print("training time", round(time() - t0, 3), "s")
+best_accuracy = 0
+best_n_neighbors = -1
+best_weights = ""
+best_algorithm = ""
+best_p = -1
+for n_neighbors in range(2, 10):
+    for weights in ["uniform", "distance"]:
+        for algorithm in ["ball_tree", "kd_tree", "brute"]:
+            for p in [1, 2]:
+                t0 = time()
+                clf = KNeighborsClassifier(n_neighbors = n_neighbors, weights = weights, algorithm = algorithm, p = p)
+                clf.fit(features_train, labels_train)
+                print("training time", round(time() - t0, 3), "s")
 
-t1 = time()
-pred = clf.predict(features_test)
-print("prediction time", round(time() - t1, 3), "s")
+                t1 = time()
+                pred = clf.predict(features_test)
+                print("prediction time", round(time() - t1, 3), "s")
 
-from sklearn.metrics import accuracy_score
-print("accuracy", accuracy_score(labels_test, pred))
+                from sklearn.metrics import accuracy_score
+                accuracy = accuracy_score(labels_test, pred)
+                print("accuracy", accuracy)
+
+                if accuracy > best_accuracy:
+                    best_accuracy = accuracy
+                    best_n_neighbors = n_neighbors
+                    best_weights = weights
+                    best_algorithm = algorithm
+                    best_p = p
+
+print("best accuracy", best_accuracy)
+print("best n_neighbors", best_n_neighbors)
+print("best weights", best_weights)
+print("best algorihm", best_algorithm)
+print("best p", best_p)
 ################################################################################
 
 try:
