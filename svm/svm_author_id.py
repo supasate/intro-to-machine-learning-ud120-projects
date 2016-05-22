@@ -24,8 +24,12 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
-#features_train = features_train[:len(features_train)/100]
-#labels_train = labels_train[:len(labels_train)/100]
+reduce_training_set = False
+
+# Use 1% of training set to trading off accuracy for speed
+if reduce_training_set:
+    features_train = features_train[:len(features_train)/100]
+    labels_train = labels_train[:len(labels_train)/100]
 
 from sklearn.svm import SVC
 
@@ -44,4 +48,10 @@ from sklearn.metrics import accuracy_score
 
 accuracy = accuracy_score(labels_test, pred)
 print("c=", c_val, "accuracy=", accuracy)
+
+for p in [10, 26, 50]:
+    print("Element %d is %d" % (p, pred[p]))
+
+pred_as_chris = reduce(lambda x, y: x + y, filter(lambda x: x == 1, pred), 0)
+print("%d of test are predicted as Chris" % pred_as_chris)
 #########################################################
