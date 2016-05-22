@@ -24,6 +24,9 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+num_features = len(features_train[0])
+print("Num features", num_features)
+
 from sklearn.tree import DecisionTreeClassifier
 cls = DecisionTreeClassifier(min_samples_split = 40)
 t0 = time()
