@@ -31,13 +31,15 @@ print("number of poi", len(poi_list))
 #print(enron_data.keys())
 
 # Show feature list
-print(enron_data["PRENTICE JAMES"].keys())
+print("feature list", enron_data["PRENTICE JAMES"].keys())
 
 # Show total stock value of James Prentice
-print(enron_data["PRENTICE JAMES"]["total_stock_value"])
+print("total stock value of James Prentice",
+    enron_data["PRENTICE JAMES"]["total_stock_value"])
 
 # Show total number of emails from Weslet Colwell to person of interest
-print(enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
+print("total number of emails from Weslet Colwell to person of interest",
+    enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
 
 # Show the value of stock options exercised by Jeffrey Skilling
 print("the value of stock options exercised by Jeffrey Skilling",
