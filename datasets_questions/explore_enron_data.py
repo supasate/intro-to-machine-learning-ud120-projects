@@ -21,14 +21,20 @@ enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r")
 print("number of people", len(enron_data))
 print("number of features", len(enron_data["SKILLING JEFFREY K"]))
 
-num_person_of_interest = 0
+poi_list = []
 for name, features_dict in enron_data.items():
     if features_dict["poi"] == 1:
-        num_person_of_interest += 1
-print("number of poi", num_person_of_interest)
+        poi_list.append(name)
+print("number of poi", len(poi_list))
 
 # Show name list
 #print(enron_data.keys())
 
+# Show feature list
+print(enron_data["PRENTICE JAMES"].keys())
+
 # Show total stock value of James Prentice
 print(enron_data["PRENTICE JAMES"]["total_stock_value"])
+
+# Show total number of emails from Weslet Colwell to person of interest
+print(enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
