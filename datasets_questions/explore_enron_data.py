@@ -50,9 +50,17 @@ print("Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["total_payments"])
 print("Andrew Fastow", enron_data["FASTOW ANDREW S"]["total_payments"])
 
 # Show features and values to detect NaN values
+num_quantified_salary = 0
+num_known_email = 0
 for name, features_dict in enron_data.items():
-    if features_dict["poi"] == 1:
-        poi_list.append(name)
-    print(name)
+    #print(name)
     for feature, value in features_dict.items():
-        print(feature, value)
+        #print(feature, value)
+        if feature == "salary" and value != "NaN":
+            num_quantified_salary += 1
+        if feature == "email_address" and value != "NaN":
+            num_known_email += 1
+
+# Show a number of quantified salary and known email addresses
+print("number of quantified salary", num_quantified_salary)
+print("number of known emails", num_known_email)
