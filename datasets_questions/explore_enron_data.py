@@ -48,3 +48,11 @@ print("Total payment")
 print("Lay Kennth", enron_data["LAY KENNETH L"]["total_payments"])
 print("Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["total_payments"])
 print("Andrew Fastow", enron_data["FASTOW ANDREW S"]["total_payments"])
+
+# Show features and values to detect NaN values
+for name, features_dict in enron_data.items():
+    if features_dict["poi"] == 1:
+        poi_list.append(name)
+    print(name)
+    for feature, value in features_dict.items():
+        print(feature, value)
