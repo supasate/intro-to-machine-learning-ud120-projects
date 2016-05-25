@@ -79,3 +79,7 @@ print("percentage of unknown total payments", float(num_unknown_total_payment) /
 # Show a number of poi with unknown total pyament and percentage
 print("number of poi with unknown total payments", num_poi_with_unknown_total_payment)
 print("percentage of poi with unknown total payments", float(num_poi_with_unknown_total_payment) / len(enron_data))
+
+# Show a number of new pois with unknown total payment after adding new 10 pois
+print("number of new pois", len(poi_list) + 10)
+print("number of new pois with unknown total payment", num_poi_with_unknown_total_payment + 10)
