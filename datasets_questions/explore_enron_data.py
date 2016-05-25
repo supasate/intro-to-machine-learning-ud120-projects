@@ -52,6 +52,8 @@ print("Andrew Fastow", enron_data["FASTOW ANDREW S"]["total_payments"])
 # Show features and values to detect NaN values
 num_quantified_salary = 0
 num_known_email = 0
+num_unknown_total_payment = 0
+num_poi_with_unknown_total_payment = 0
 for name, features_dict in enron_data.items():
     #print(name)
     for feature, value in features_dict.items():
@@ -60,7 +62,20 @@ for name, features_dict in enron_data.items():
             num_quantified_salary += 1
         if feature == "email_address" and value != "NaN":
             num_known_email += 1
+        if feature == "total_payments" and value == "NaN":
+            num_unknown_total_payment += 1
+            if enron_data[name]["poi"] == 1:
+                num_poi_with_unknown_total_payment += 1
+
 
 # Show a number of quantified salary and known email addresses
 print("number of quantified salary", num_quantified_salary)
 print("number of known emails", num_known_email)
+
+# Show a number of unknown total payments and percentage
+print("number of unknown total payments", num_unknown_total_payment)
+print("percentage of unknown total payments", float(num_unknown_total_payment) / len(enron_data))
+
+# Show a number of poi with unknown total pyament and percentage
+print("number of poi with unknown total payments", num_poi_with_unknown_total_payment)
+print("percentage of poi with unknown total payments", float(num_poi_with_unknown_total_payment) / len(enron_data))
