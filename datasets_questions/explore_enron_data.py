@@ -31,13 +31,13 @@ print("number of poi", len(poi_list))
 #print(enron_data.keys())
 
 # Show feature list
-print(enron_data["PRENTICE JAMES"].keys())
+print("features list", enron_data["PRENTICE JAMES"].keys())
 
 # Show total stock value of James Prentice
-print(enron_data["PRENTICE JAMES"]["total_stock_value"])
+print("total stock value fo James Prentice", enron_data["PRENTICE JAMES"]["total_stock_value"])
 
 # Show total number of emails from Weslet Colwell to person of interest
-print(enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
+print("total number of emails from Weslet Colwell to poi", enron_data["COLWELL WESLEY"]["from_this_person_to_poi"])
 
 # Show the value of stock options exercised by Jeffrey Skilling
 print("the value of stock options exercised by Jeffrey Skilling",
@@ -77,9 +77,10 @@ print("number of unknown total payments", num_unknown_total_payment)
 print("percentage of unknown total payments", float(num_unknown_total_payment) / len(enron_data))
 
 # Show a number of poi with unknown total pyament and percentage
-print("number of poi with unknown total payments", num_poi_with_unknown_total_payment)
-print("percentage of poi with unknown total payments", float(num_poi_with_unknown_total_payment) / len(enron_data))
+print("number of pois with unknown total payments", num_poi_with_unknown_total_payment)
+print("percentage of pois with unknown total payments", float(num_poi_with_unknown_total_payment) / len(enron_data))
 
 # Show a number of new pois with unknown total payment after adding new 10 pois
 print("number of new pois", len(poi_list) + 10)
 print("number of new pois with unknown total payment", num_poi_with_unknown_total_payment + 10)
+print("percentage of new pois with unknown total payments", float(num_poi_with_unknown_total_payment + 10) / (len(enron_data) + 10))
