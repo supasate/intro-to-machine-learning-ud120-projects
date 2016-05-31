@@ -36,11 +36,6 @@ accuracy = reg.score(ages_test, net_worths_test)
 print("accuracy", accuracy)
 
 
-
-
-
-
-
 try:
     plt.plot(ages, reg.predict(ages), color="blue")
 except NameError:
@@ -83,6 +78,6 @@ if len(cleaned_data) > 0:
     plt.ylabel("net worths")
     plt.show()
 
-
+    print("Slope after cleaning outlier", reg.coef_)
 else:
     print "outlierCleaner() is returning an empty list, no refitting to be done"
