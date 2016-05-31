@@ -79,5 +79,6 @@ if len(cleaned_data) > 0:
     plt.show()
 
     print("Slope after cleaning outlier", reg.coef_)
+    print("accuracy after cleaning outlier", reg.score(ages_test, net_worths_test))
 else:
     print "outlierCleaner() is returning an empty list, no refitting to be done"
