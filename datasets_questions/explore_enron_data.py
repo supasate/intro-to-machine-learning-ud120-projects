@@ -50,22 +50,37 @@ print("Jeffrey Skilling", enron_data["SKILLING JEFFREY K"]["total_payments"])
 print("Andrew Fastow", enron_data["FASTOW ANDREW S"]["total_payments"])
 
 # Show features and values to detect NaN values
+import sys
+
 num_quantified_salary = 0
 num_known_email = 0
 num_unknown_total_payment = 0
 num_poi_with_unknown_total_payment = 0
+max_val_exercised_stock_options = -sys.maxint
+min_val_exercised_stock_options = sys.maxint
+max_salary = -sys.maxint
+min_salary = sys.maxint
+
+# Remove outlier
+enron_data.pop("TOTAL", 0)
+
 for name, features_dict in enron_data.items():
     #print(name)
     for feature, value in features_dict.items():
         #print(feature, value)
         if feature == "salary" and value != "NaN":
             num_quantified_salary += 1
+            max_salary = max(max_salary, value)
+            min_salary = min(min_salary, value)
         if feature == "email_address" and value != "NaN":
             num_known_email += 1
         if feature == "total_payments" and value == "NaN":
             num_unknown_total_payment += 1
             if enron_data[name]["poi"] == 1:
                 num_poi_with_unknown_total_payment += 1
+        if feature == "exercised_stock_options" and value != "NaN":
+            max_val_exercised_stock_options = max(max_val_exercised_stock_options, value)
+            min_val_exercised_stock_options = min(min_val_exercised_stock_options, value)
 
 
 # Show a number of quantified salary and known email addresses
@@ -84,3 +99,11 @@ print("percentage of pois with unknown total payments", float(num_poi_with_unkno
 print("number of new pois", len(poi_list) + 10)
 print("number of new pois with unknown total payment", num_poi_with_unknown_total_payment + 10)
 print("percentage of new pois with unknown total payments", float(num_poi_with_unknown_total_payment + 10) / (len(enron_data) + 10))
+
+# Show max and min value of exercised_stock_options
+print("max exercised_stock_options", max_val_exercised_stock_options)
+print("min exercised_stock_options", min_val_exercised_stock_options)
+
+# Show max and min value of salary
+print("max salary", max_salary)
+print("min salary", min_salary)
