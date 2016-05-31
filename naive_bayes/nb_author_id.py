@@ -38,7 +38,7 @@ print("predition time:", round(time() - t1, 3), "s")
 from sklearn.metrics import accuracy_score
 
 accuracy = accuracy_score(labels_test, pred)
-print(accuracy)
+print("accuracy", accuracy)
 
 
 #########################################################
