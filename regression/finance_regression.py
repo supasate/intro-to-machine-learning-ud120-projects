@@ -53,14 +53,14 @@ accuracy = reg.score(feature_test, target_test)
 print("accuracy with test data of bonus and salary", accuracy)
 
 # Test long term incentive and bonus
-features_list = ["bonus", "long_term_incentive"]
-data = featureFormat( dictionary, features_list, remove_any_zeroes=True)
-target, features = targetFeatureSplit( data )
-feature_train, feature_test, target_train, target_test = train_test_split(features, target, test_size=0.5, random_state=42)
+#features_list = ["bonus", "long_term_incentive"]
+#data = featureFormat( dictionary, features_list, remove_any_zeroes=True)
+#target, features = targetFeatureSplit( data )
+#feature_train, feature_test, target_train, target_test = train_test_split(features, target, test_size=0.5, random_state=42)
 
-reg.fit(feature_train, target_train)
-accuracy = reg.score(feature_test, target_test)
-print("accuracy with test data of bonus and long_term_incentive", accuracy)
+#reg.fit(feature_train, target_train)
+#accuracy = reg.score(feature_test, target_test)
+#print("accuracy with test data of bonus and long_term_incentive", accuracy)
 
 
 
@@ -83,6 +83,11 @@ try:
     plt.plot( feature_test, reg.predict(feature_test) )
 except NameError:
     pass
+
+reg.fit(feature_test, target_test)
+print("slop after removeing outliers out of the training set", reg.coef_)
+plt.plot(feature_train, reg.predict(feature_train), color="b")
+
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
