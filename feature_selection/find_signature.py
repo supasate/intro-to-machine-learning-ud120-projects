@@ -50,3 +50,5 @@ import operator
 idx, val = max(enumerate(list(cls.feature_importances_)), key=operator.itemgetter(1))
 print("most importance value", val)
 print("most importance idx", idx)
+
+print("most powerful word", vectorizer.get_feature_names()[idx])
