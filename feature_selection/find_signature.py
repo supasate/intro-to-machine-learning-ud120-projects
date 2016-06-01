@@ -45,3 +45,8 @@ pred = cls.predict(features_test)
 
 from sklearn.metrics import accuracy_score
 print("accuracy", accuracy_score(labels_test, pred))
+
+import operator
+idx, val = max(enumerate(list(cls.feature_importances_)), key=operator.itemgetter(1))
+print("most importance value", val)
+print("most importance idx", idx)
