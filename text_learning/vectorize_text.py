@@ -41,7 +41,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
         ### only look at first 200 emails when developing
         ### once everything is working, remove this line to run over full dataset
-        temp_counter += 1
+        #temp_counter += 1
         if temp_counter < 200:
             path = os.path.join('..', path[:-1])
             print path
@@ -53,7 +53,7 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             ### use str.replace() to remove any instances of the words
             ### ["sara", "shackleton", "chris", "germani"]
             for word in ["sara", "shackleton", "chris", "germani"]:
-                parsedText.replace(word, "")
+                parsedText = parsedText.replace(word, "")
 
             ### append the text to word_data
             word_data.append(parsedText)
@@ -73,7 +73,14 @@ from_chris.close()
 pickle.dump( word_data, open("your_word_data.pkl", "w") )
 pickle.dump( from_data, open("your_email_authors.pkl", "w") )
 
-print(word_data[152])
+print("word_data at index 152", word_data[152])
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+tfidf = TfidfVectorizer(stop_words='english')
+transformed_data = tfidf.fit_transform(word_data)
+print("a number of unique words", len(tfidf.get_feature_names()))
+
+print("feature name at index 34597", tfidf.get_feature_names()[34597])
 
 
 
